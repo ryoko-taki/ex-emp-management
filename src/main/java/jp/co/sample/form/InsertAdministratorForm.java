@@ -4,6 +4,8 @@ public class InsertAdministratorForm {
 	private String name;
 	private String mailAddress;
 	private String password;
+	
+	
 	public String getName() {
 		return name;
 	}
