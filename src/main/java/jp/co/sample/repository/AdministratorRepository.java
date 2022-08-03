@@ -30,10 +30,10 @@ public class AdministratorRepository {
 	}
 	
 	public Administrator findByMailAddressAndPassward(String mailAddress, String password) {
-		SqlParameterSource param = new MapSqlParameterSource().addValue("mail_address", mailAddress).addValue("password", password);
+		String sql = "select * from administrators where mail_address = :mailAddress and password = :password;";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
 		//SQL文に何書くの？
 		//やりたいこと　→　メアドとパスワードから、管理者情報(名前、id、メアド、パス)を取得する
-		String sql = "select * from administrators where mail_address = :mailAddress, password = :password;";
 		List <Administrator> administratorList = template.query(sql, param, ADMINISTRATOR_ROW_MAPPER);
 		if(administratorList.size() == 0) {
 			return null;
