@@ -1,5 +1,4 @@
 package jp.co.sample.repository;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
@@ -31,7 +30,7 @@ public class AdministratorRepository {
 	}
 	
 	public Administrator findByMailAddressAndPassward(String mailAddress, String password) {
-		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password", password);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("mail_address", mailAddress).addValue("password", password);
 		//SQL文に何書くの？
 		//やりたいこと　→　メアドとパスワードから、管理者情報(名前、id、メアド、パス)を取得する
 		String sql = "select * from administrators where mail_address = :mail_address, password = :password;";
