@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
+import jp.co.sample.form.LoginForm;
 import jp.co.sample.service.AdministratorService;
 
 @Controller
@@ -23,7 +24,7 @@ public class AdministratorController {
 	
 	@RequestMapping("/toInsert")
 	public String toInsert() {
-		return "administrator/insert";
+		return "administrator/insert.html";
 	}
 	
 	@RequestMapping("/insert")
@@ -34,5 +35,18 @@ public class AdministratorController {
 		administrator.setPassword(form.getPassword());
 		administratorService.insert(administrator);
 		return "redirect:/";
+	}
+	//入力されて受け取った値＝リクエストパラメータ
+	//→LoginFormに格納
+	 //→Modelオブジェクト＝リクエストスコープ(データ領域)　に格納
+	@ModelAttribute
+	public LoginForm setUpLoginForm() {
+		LoginForm loginform = new LoginForm();
+		return loginform;
+	}
+	
+	@RequestMapping("/")
+	public String toLogin() {
+		return "administrator/login";
 	}
 }
