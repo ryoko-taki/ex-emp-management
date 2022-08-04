@@ -14,9 +14,14 @@ import jp.co.sample.repository.EmployeeRepository;
 public class EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	
+	//リポジトリクラスのfindAll()で取得した従業員情報をリストに入れるメソッド
 	public List<Employee> showList(){
 		List<Employee> list = employeeRepository.findAll();
 		return list;
+	}
+	//idから従業員の詳細情報を取得するメソッド
+	public Employee showDetail(Integer id) {
+		Employee employee = employeeRepository.load(id);
+		return employee;
 	}
 }
