@@ -34,6 +34,16 @@ public class EmployeeController {
 	public String showDetail(String id, Model model) {
 		Employee employee = employeeService.showDetail(Integer.parseInt(id));
 		model.addAttribute("employee", employee);
-		return "employee/detail.html";
+		return "employee/detail";
+	}
+	
+	@RequestMapping("/update")
+	public String update(UpdateEmployeeForm form) {
+		//employeeには、リクエストパラメータから送られてきたFormクラスのidに紐づく、Employeeクラス(扶養人数更新前)の人数情報が格納されている
+//		System.out.println(form.getId() + "people");
+		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
+		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
+		employeeService.update(employee);
+		return "redirect:/employee/showList";
 	}
 }

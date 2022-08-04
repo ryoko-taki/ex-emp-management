@@ -24,4 +24,9 @@ public class EmployeeService {
 		Employee employee = employeeRepository.load(id);
 		return employee;
 	}
+	
+	//従業員情報の更新メソッド
+	public void update(Employee employee) {
+		employeeRepository.update(employee);
+	}
 }
